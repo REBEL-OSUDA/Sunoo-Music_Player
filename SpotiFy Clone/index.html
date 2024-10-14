@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="REBEL-Osuda">
+    <meta name="description" content="This is a clone Spotify - A popular music streaming website and application">
+    <link rel="stylesheet" href="style.css">
+    <title>SpotiFY</title>
+</head>
+<body style="background-color:#212121;">
+    <header>
+        <h3>SpotiFY</h3>
+        <nav>
+            <ul>
+                <li><a href="#"><img class="logo" src="images/logo.png" alt="SpotiFY" title="SpotiFY" width="40px" height="40px" ></a></li>
+                <li>
+                    <div class="search">
+                        <input type="text" id="search" placeholder="What do you want to play?">
+                    </div>
+                </li>
+                <li><a href="#"><img class="home" src="images/home.png" alt="Home" title="Home" width="30px" height="30px">
+                </li></a>
+                <li><a href="#"><img class="new" src="images/bell.png" alt="What's New" title="What's New" width="30px" height="30px"></a></li>
+            </ul>
+        </nav>
+        <div class="green-bottom-border"></div>
+    </header>
+    <main>
+        <div class="songList">
+            <div>
+                <h2 class="main__h2">Best Of NCS - NO Copyright Sounds</h2>
+                <div class="songItem">
+                    <img src="images/make me move.jpg" alt="1">
+                    <span class="songName">Make Me Move</span>
+                    <span class="songPlayTime">3:17</span>
+                    <i class="fa-regular fa-1.5x fa-circle-play play-circle-icon"></i>
+                </div>
+                <div class="songItem">
+                    <img src="images/make me move.jpg" alt="1">
+                    <span class="songName">Make Me Move</span>
+                    <span class="songPlayTime">3:17</span>
+                    <i class="fa-regular fa-1.5x fa-circle-play play-circle-icon"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="player">
+            <div class="icons">
+                <i class="fa-solid fa-3x fa-backward backward-icon"></i>
+                <i class="fa-regular fa-3x fa-circle-play play-circle-icon"></i>
+                <i class="fa-solid fa-3x fa-forward forward-icon"></i>
+            </div>
+            <div class="songInfo">
+                <img src="images/music.gif" alt="gif"><span>Make me Make</span>
+            </div>
+            <input type="range" id="range" min="0" max="100">
+            
+        </div>
+    </footer>
+    
+</body>
+<script src="https://kit.fontawesome.com/b63f498152.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</html>
