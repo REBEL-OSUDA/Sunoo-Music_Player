@@ -20,14 +20,20 @@ let text=document.querySelector(".songDisplay")
 // Event Listening and Handling
 
 songList.addEventListener("click", (event)=>{
-    const clickedItem=event.target;
-    console.log(clickedItem.tagName);
-    console.log(clickedItem.innerHTML);
-        if (audio)
+    const ListItem=event.target.closest("li");
+    let mini_play=ListItem.querySelector("i");
+    if (audio){
         audio.pause();
-        let src=clickedItem.getAttribute("data-src")
-        audio=new Audio(src);
-        audio.play();
+        mini_play.classList.remove("fa-circle-pause");
+        mini_play.classList.add("fa-circle-play");
+    }
+    let src=ListItem.getAttribute("data-src")
+    audio=new Audio(src);
+    audio.play();
+    mini_play.classList.remove("fa-circle-play");
+    mini_play.classList.add("fa-circle-pause");
+    masterPlay.classList.remove("fa-circle-play");
+    masterPlay.classList.add("fa-circle-pause");
 })
 
 masterPlay.addEventListener("click", ()=>{
