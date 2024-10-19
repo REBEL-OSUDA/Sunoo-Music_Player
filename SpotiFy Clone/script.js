@@ -1,13 +1,16 @@
 //Variable Initialization
 let audio=new Audio("songs/Make me move.mp3");
-let progressBar=document.querySelector("#range")
-let masterPlay=document.getElementById("masterPlay")
-let BackwardPlay=document.getElementById("masterBackwardPlay")
-let ForwardPlay=document.getElementById("masterForwardPlay")
-let gif=document.getElementById("gif")
+let progressBar=document.querySelector("#range");
+let masterPlay=document.getElementById("masterPlay");
+let BackwardPlay=document.getElementById("masterBackwardPlay");
+let ForwardPlay=document.getElementById("masterForwardPlay");
+let gif=document.querySelector(".songInfo");
 let songList=document.querySelector(".real-song-list");
-// let mini=document.getElementById("mini-play-circle");
-let text=document.querySelector(".songDisplay")
+let text=document.querySelector(".songDisplay");
+let play_buttons=songList.querySelectorAll("i");
+let songDisks=songList.querySelectorAll("img")
+let footer=document.querySelector("footer");
+let songInfo=gif.querySelector(".SongName");
 
 //Song Information
 // let songs=[
@@ -22,18 +25,32 @@ let text=document.querySelector(".songDisplay")
 songList.addEventListener("click", (event)=>{
     const ListItem=event.target.closest("li");
     let mini_play=ListItem.querySelector("i");
+    let songName=ListItem.querySelector(".songName");
+    let singers=ListItem.getAttribute("data-name")
     if (audio){
         audio.pause();
-        mini_play.classList.remove("fa-circle-pause");
-        mini_play.classList.add("fa-circle-play");
+        play_buttons.forEach((i)=>{
+            i.classList.remove("fa-circle-pause");
+            i.classList.add("fa-circle-play");
+        })
+        masterPlay.classList.remove("fa-circle-pause");
+        masterPlay.classList.add("fa-circle-play");
+        gif.style.opacity=0;
     }
     let src=ListItem.getAttribute("data-src")
     audio=new Audio(src);
     audio.play();
+    gif.style.opacity=1;
+    let progress=0;
+    audio.addEventListener("timeupdate", ()=>{
+    progress=(audio.currentTime/audio.duration)*100;
+    progressBar.value=progress;
+    })
     mini_play.classList.remove("fa-circle-play");
     mini_play.classList.add("fa-circle-pause");
     masterPlay.classList.remove("fa-circle-play");
     masterPlay.classList.add("fa-circle-pause");
+    songInfo.textContent=`${songName.textContent}-${singers}`;
 })
 
 masterPlay.addEventListener("click", ()=>{
@@ -50,7 +67,6 @@ masterPlay.addEventListener("click", ()=>{
         audio.pause();
         gif.style.opacity=0;
      }  
-
 })
 BackwardPlay.addEventListener("click", ()=>{
     audio.pause();
@@ -65,15 +81,11 @@ ForwardPlay.addEventListener("click", ()=>{
     audio.currentTime=0;
     progressBar.value=0;
 })
-let progress=0;
-audio.addEventListener("timeupdate", ()=>{
-    progress=Math.round((audio.currentTime/audio.duration)*100);
-    progressBar.value=progress;
-})
+
 progressBar.addEventListener("change", ()=>{
     audio.currentTime=progressBar.value*audio.duration/100;
-
 })
+
 
 
 
