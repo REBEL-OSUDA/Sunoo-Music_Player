@@ -8,7 +8,7 @@
     box-sizing:border-box;
 }
 body{
-    background-color: aquamarine;
+    background-color: black;
     font-size:16px;
     font-family: "Varela Round", sans-serif; 
 }
@@ -60,7 +60,9 @@ ul li{
 /* MAIN ---------------*/
 
 main{
-    background-image: url('images/banner3.jpg');
+    /* background-image: url('images/banner3.jpg'); */
+    
+    background: url('images/banner3.jpg'), black;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -110,8 +112,6 @@ main{
     transform: rotate(360deg);
 }
 
-
-
 /* FOOTER------------------ */
 
 .player{
@@ -131,6 +131,7 @@ main{
     width:70vw;
     border-radius: 5px;
 }
+
 i{
     margin: 10px;
     cursor:pointer;
@@ -152,4 +153,39 @@ footer img{
 .songInfo{
     opacity:0;
     transition:opacity 0.4s ease-in;
+}  
+.Songs{
+    overflow:hidden;
+    cursor:pointer;
+}
+
+/* .marquee{
+
+} */
+
+.marquee{
+    animation:marquee 15s linear infinite;
+}
+
+.marquee:hover{
+    /* animation-direction:reverse; */
+    animation-play-state: paused;
+    text-decoration:underline;
+
+}
+
+/* ANIMATIONS --------------- */
+
+@keyframes marquee{
+    from {
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-100%);
+    }
+}
+@keyframes spin{
+    to{
+        transform:rotateZ(360deg)
+    }
 }
