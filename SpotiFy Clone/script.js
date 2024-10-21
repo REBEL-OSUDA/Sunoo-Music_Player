@@ -10,7 +10,7 @@ let text=document.querySelector(".songDisplay");
 let play_buttons=songList.querySelectorAll("i");
 let songDisks=songList.querySelectorAll("img")
 let footer=document.querySelector("footer");
-let songInfo=gif.querySelector(".SongName");
+let songInfo=gif.querySelectorAll(".marquee");
 
 //Song Information
 // let songs=[
@@ -25,6 +25,8 @@ let songInfo=gif.querySelector(".SongName");
 songList.addEventListener("click", (event)=>{
     const ListItem=event.target.closest("li");
     let mini_play=ListItem.querySelector("i");
+    let disk=ListItem.querySelector("img");
+    let disks=songList.querySelectorAll("img");
     let songName=ListItem.querySelector(".songName");
     let singers=ListItem.getAttribute("data-name")
     if (audio){
@@ -36,12 +38,16 @@ songList.addEventListener("click", (event)=>{
         masterPlay.classList.remove("fa-circle-pause");
         masterPlay.classList.add("fa-circle-play");
         gif.style.opacity=0;
+        disks.forEach((l)=>{
+            l.style.animation="none";
+        })
     }
     let src=ListItem.getAttribute("data-src")
     audio=new Audio(src);
     audio.play();
     gif.style.opacity=1;
     let progress=0;
+    disk.style.animation="spin 20s infinite"
     audio.addEventListener("timeupdate", ()=>{
     progress=(audio.currentTime/audio.duration)*100;
     progressBar.value=progress;
@@ -50,7 +56,10 @@ songList.addEventListener("click", (event)=>{
     mini_play.classList.add("fa-circle-pause");
     masterPlay.classList.remove("fa-circle-play");
     masterPlay.classList.add("fa-circle-pause");
-    songInfo.textContent=`${songName.textContent}-${singers}`;
+    songInfo.forEach((song)=>{
+        song.textContent=`${songName.textContent} - ${singers}`;
+    })
+    
 })
 
 masterPlay.addEventListener("click", ()=>{
